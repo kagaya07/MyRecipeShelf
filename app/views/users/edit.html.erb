@@ -1,0 +1,12 @@
+<h3>Users Edit</h3>
+
+<%= form_for(@user) do |f| %>
+	 <%= attachment_image_tag @user, :image, size: "200x200", format: 'jpeg', fallback: 'no_image.jpg', style: "border-radius: 50%" %>
+	 <%= f.attachment_field :image %>
+	 <label>ニックネーム</label>
+	 <%= f.text_field :name %>
+	 <label>得意料理</label>
+	 <%= f.text_field :specialties %>
+
+	 <%= f.submit "編集を保存" %>
+<% end %>
