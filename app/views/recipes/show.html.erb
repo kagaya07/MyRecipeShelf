@@ -1,0 +1,19 @@
+<h3>Recipes Show</h3>
+<% if flash[:notice] %>
+	<div class="flash notice"><%= flash[:notice] %></div>
+<% end %>
+
+<%= @recipe.name %>
+
+<%= attachment_image_tag @recipe, :image,size:"250x230", format:'jpeg', fallback: "no_image.jpg"%>
+
+<label>材料</label>
+<%= @recipe.amount %>人前
+<% @mterials.each do |mterial| %>
+	<table>
+		<tr>
+		<td><%= material.name %></td>
+		<td><%= material.puantity %></td>
+		</tr>
+	</table>
+<% end %>

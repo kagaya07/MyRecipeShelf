@@ -1,0 +1,18 @@
+<h3>User index</h3>
+
+<table class="table">
+	<thead><tr>
+		<th>会員ID</th>
+		<th>ニックネーム</th>
+		<th>メールアドレス</th>
+	</tr></thead>
+	<% @users.each do |user| %>
+	<tbody>
+		<td><%= user.id %></td>
+		<td><%= user.name %></td>
+		<td><%= user.email %></td>
+	</tbody>
+	<% end %>
+</table>
+
+<%= link_to "戻る", user_path(current_user) %>

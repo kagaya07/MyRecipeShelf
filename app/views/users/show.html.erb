@@ -1,0 +1,48 @@
+<h3>User Show</h3>
+
+<% if @user.role == "admin" %>
+
+	<%= attachment_image_tag @user, :image, size: "200x200", format: 'jpeg', fallback: 'no_image.jpg', style: "border-radius: 50%" %>
+	<label>ニックネーム</label>
+	<%= @user.name %>
+	<label>得意料理</label>
+	<%= @user.specialties %>
+	<%= link_to "プロフィール編集", edit_user_path(@user) %>
+	<%= link_to "パスワード編集", edit_user_path(@user) %>
+
+	<h4>最近のレシピ</h4>
+	<% @recipes.each do |recipe| %>
+		<%= attachment_image_tag recipe, :image, size: "200x200", format: 'jpeg', fallback: 'no_image.jpg' %>
+		<%= recipe.name %>
+	<% end %>
+	<%= link_to "レシピ棚へ", homes_shelf_path %>
+	<h4>管理者リンク</h4>
+	<table>
+		<tr>
+			<td><label>会員一覧へ</label><br><p>登録している会員を一覧で確認できます。</p></td>
+			<td><%= link_to "リンク", users_path %></td>
+		</tr>
+		<tr>
+			<td><label>ジャンル追加＆一覧へ</label><br><p>ジャンルを追加、確認ができます。</p></td>
+			<td><%= link_to "リンク", genres_path %></td>
+		</tr>
+		<tr>
+			<td><label>レシピ一覧へ</label><br><p>レシピの一覧へ行きます。</p></td>
+			<td><%= link_to "リンク", recipes_path %></td>
+		</tr>
+	</table>
+<% else %>
+	<%= attachment_image_tag @user, :image, size: "200x200", format: 'jpeg', fallback: 'no_image.jpg', style: "border-radius: 50%" %>
+	<label>ニックネーム</label>
+	<%= @user.name %>
+	<label>得意料理</label>
+	<%= @user.specialties %>
+	<%= link_to "プロフィール編集", edit_user_path(@user) %>
+	<%= link_to "パスワード編集", edit_user_path(@user) %>
+
+	<h4>最近のレシピ</h4>
+	<% @recipes.each do |recipe| %>
+		<%= attachment_image_tag recipe, :image, size: "200x200", format: 'jpeg', fallback: 'no_image.jpg' %>
+		<%= recipe.name %>
+	<% end %>
+<% end %>
