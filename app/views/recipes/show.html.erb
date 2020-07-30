@@ -12,8 +12,13 @@
 <% @mterials.each do |mterial| %>
 	<table>
 		<tr>
-		<td><%= material.name %></td>
-		<td><%= material.puantity %></td>
+		<td><%= mterial.name %></td>
+		<td><%= mterial.puantity %></td>
 		</tr>
 	</table>
+<% end %>
+
+<% @cooks.each do |cook| %>
+	<%= attachment_image_tag cook, :image,size:"150x150", format:'jpeg', fallback: "no_image.jpg"%>
+	<%= cook.body %>
 <% end %>

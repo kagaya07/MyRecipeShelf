@@ -4,17 +4,28 @@ class RecipesController < ApplicationController
 
   def show
     @recipe = Recipe.find(params[:id])
-    @mterials = @recipe.mterials.order(created_at: :asc)
+    @cooks = @recipe.cooks
+    @mterials = @recipe.mterials
   end
 
   def edit
+    @recipe = Recipe.find(params[:id])
+    @cooks = @recipe.cooks
   end
 
   def update
+    @recipe = Recipe.find(params[:id])
+    if @recipe.update(recipe_params)
+      redirect_to recipe_path(@recipe), notice: "レシピを編集しました!"
+    else
+      render :edit
+    end
   end
 
   def new
     @recipe = Recipe.new
+    @cook = @recipe.cooks.build
+    @mterial = @recipe.mterials.build
   end
 
   def destroy
@@ -23,7 +34,8 @@ class RecipesController < ApplicationController
   def create
     @recipe = Recipe.new(recipe_params)
     @recipe.user_id = current_user.id
-    if @recipe.save!
+    byebug
+    if @recipe.save
       redirect_to recipe_path(@recipe), notice: "レシピを保存しました!"
     else
       render :new
@@ -33,6 +45,6 @@ class RecipesController < ApplicationController
 
   private
   def recipe_params
-    params.require(:recipe).permit(:name, :image, :amount, :explanation, :is_valid, :genre_id, cooks_attributes: [:id, :image, :body, :_destroy], mterials_attributes: [:id, :name, :puantity, :_destroy])
+    params.require(:recipe).permit(:name, :image, :amount, :explanation, :is_valid, :genre_id, mterials_attributes: [:id, :name, :puantity, :_destroy],cooks_attributes: [:id, :image, :body, :_destroy])
   end
 end

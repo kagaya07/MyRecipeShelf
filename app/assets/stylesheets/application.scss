@@ -16,35 +16,55 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+.container-fluid {
+	margin-right: auto;
+	margin-left: auto;
+	max-width: 80%;
+}
+
+.clearfix::after {
+	content: "";
+	display: block;
+	clear: both;
+}
 
 .title {
 	margin-top: 20px;
 	margin-bottom: 50px;
 }
 
-
-.amount {
-	margin-left: 100px;
-	margin-top: 55px;
+.top {
+	margin-bottom: 30px;
 }
 
-.mterial {
-	margin-left: 100px;
-	margin-top: 10px;
+.recipe-image {
+	float: left;
 }
 
-.puantity {
-	margin-top: 10px;
+.image_add {
+	width: 300px;
+}
+
+#mterial {
+	width: 400px;
+	display: inline-block;
+	margin-left: 60px;
+	padding-bottom: 5px;
 }
 
 .add-mterial {
-	margin-left: 100px;
-	margin-top: 10px;
+	margin-left: 300px;
 }
 
-.cooking {
-	width: 30%;
-	display: inline-block;
-	margin-left: 15px;
-	margin-top: 20px;
+.amount {
+	margin-left: 220px;
+	margin-bottom: 20px;
 }
+
+.cook-add {
+	display: inline-block;
+	float: left;
+	margin-bottom: 20px;
+	margin-right: 50px;
+}
+
