@@ -3,22 +3,76 @@
 	<div class="flash notice"><%= flash[:notice] %></div>
 <% end %>
 
-<%= @recipe.name %>
+<h4 class="title-show"><%= @recipe.name %></h4>
+<% recipe = @recipe %>
+<div id="like-<%= @recipe.id %>">
+<%= render partial: 'favorites/favorite' , locals:{ recipe: @recipe } %><br>
+</div>
+<div class="clearfix top-show">
+	<%= attachment_image_tag @recipe, :image,size:"300x230", format:'jpeg', fallback: "no_image.jpg", class: "image-show"%>
 
-<%= attachment_image_tag @recipe, :image,size:"250x230", format:'jpeg', fallback: "no_image.jpg"%>
-
-<label>材料</label>
-<%= @recipe.amount %>人前
-<% @mterials.each do |mterial| %>
-	<table>
-		<tr>
-		<td><%= mterial.name %></td>
-		<td><%= mterial.puantity %></td>
-		</tr>
+	<div class="mterial-show">
+	<label>材料</label>
+	<%= @recipe.amount %>人前
+	<table class="table show-table">
+		<thead><tr><th>材料名</th><th>分量</th></tr></thead>
+		<% @mterials.each do |mterial| %>
+		<tbody>
+			<tr>
+			<td class="mterial-name"><%= mterial.name %></td>
+			<td class="mterial-puantity"><%= mterial.puantity %></td>
+			</tr>
+		</tbody>
+		<% end %>
 	</table>
-<% end %>
+	</div>
+</div>
 
+<div class="clearfix">
+<h5>作り方</h5>
+<% n = 1 %>
 <% @cooks.each do |cook| %>
-	<%= attachment_image_tag cook, :image,size:"150x150", format:'jpeg', fallback: "no_image.jpg"%>
-	<%= cook.body %>
+	<div class="cook-show">
+	<%= n %>.<br>
+	<%= attachment_image_tag cook, :image,size:"200x200", format:'jpeg'%><br>
+	<p class="cook-body"><%= cook.body %></p>
+	</div>
+	<% n += 1 %>
 <% end %>
+</div>
+
+<h5>レシピの説明</h5>
+<div class="explanation-show">
+	<%= @recipe.explanation %>
+</div>
+
+<h5>ジャンル</h5>
+<p class="genre-show"><%= @recipe.genre.name %></p>
+<% if @recipe.is_valid== true %>
+	<p class="is_valid-show">公開中</p>
+<% else %>
+	<p class="is_valid-show">非公開</p>
+<% end %>
+<%= link_to "レシピを編集する", edit_recipe_path(@recipe), class: "btn btn-success active" %>
+<%= link_to "レシピを削除する", recipe_path(@recipe.id), method: :delete, data: {confirm: "本当に削除しますか？"},class: "btn btn-danger active" %>
+
+
+<div class="comment-box">
+	<%= form_for [@recipe, @comment] do |c| %>
+		<labal>コメント</labal>
+		<%= c.text_area :body, class: "form_control" %>
+		<%= c.submit "コメントを送る", class: "btn btn-info"%>
+	<% end %>
+	<table>
+	<% @recipe.comments.each do |comment| %>
+		<tr>
+		<td><%= attachment_image_tag comment.user, :image, size:"40x40", format: 'jpeg', fallback: "no_image.jpg", style: "border-radius: 50%" %></td>
+		<td><%= comment.user.name %></td>
+		<td><%= comment.body %></td>
+		<td><% if comment.user == current_user%>
+			<%= link_to "Destroy", recipe_comment_path(comment.recipe, comment), method: :delete,class: "btn btn-danger pull-right red" %>
+		<% end %></td>
+		</tr>
+	<% end %>
+	</table>
+</div>

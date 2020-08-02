@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :users, only: [:index, :update, :show, :edit]
   get 'homes/shelf' => 'homes#shelf'
   resources :recipes do
-    resources :favorites, only: [:create, :destroy, :index]
+    resource :favorites, only: [:create, :destroy, :index]
     resources :comments, only: [:create, :destroy]
   end
   resources :genres, only: [:index, :update, :create, :edit]

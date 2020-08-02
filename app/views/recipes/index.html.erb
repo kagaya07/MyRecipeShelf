@@ -1,2 +1,25 @@
-<h1>Recipes#index</h1>
-<p>Find me in app/views/recipes/index.html.erb</p>
+
+<h1>Recipe Index</h1>
+
+<div class="recipe-index">
+	<% @recipes.each do |recipe| %>
+	<div class="recipe-box clearfix">
+		<div class="book-area">
+			<div class="book">
+			<%= attachment_image_tag recipe, :image,size:"120x105", format:'jpeg', fallback: "no_image.jpg", class: "image-index"%><br>
+			<p class="recipe-label"><%= recipe.name %></p>
+			</div>
+			<div id="like-<%= recipe.id %>">
+			<%= render partial: 'favorites/favorite' , locals:{ recipe: recipe } %>
+			</div>
+		</div>
+
+		<div class="recipe-text">
+			<div class="recipe-name-index"><%= recipe.name %>　　<%= recipe.user.name %></div><br><br>
+			<div class="explanation-index"><%= recipe.explanation %></div>
+
+		</div>
+		<div class="recipe-link"><%= link_to "レシピを見る", recipe_path(recipe), class:"btn btn-info active" %></div>
+	</div>
+	<% end %>
+</div>

@@ -1,11 +1,14 @@
 class RecipesController < ApplicationController
+
   def index
+    @recipes = Recipe.all
   end
 
   def show
     @recipe = Recipe.find(params[:id])
     @cooks = @recipe.cooks
     @mterials = @recipe.mterials
+    @comment = Comment.new
   end
 
   def edit
@@ -29,6 +32,12 @@ class RecipesController < ApplicationController
   end
 
   def destroy
+    @recipe = Recipe.find(params[:id])
+    if @recipe.destroy
+      redirect_to homes_shelf_path, notice: "レシピを削除しました"
+    else
+      render :show
+    end
   end
 
   def create

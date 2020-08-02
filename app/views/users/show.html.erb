@@ -10,12 +10,18 @@
 	<%= link_to "プロフィール編集", edit_user_path(@user) %>
 	<%= link_to "パスワード編集", edit_user_path(@user) %>
 
-	<h4>最近のレシピ</h4>
-	<% @recipes.each do |recipe| %>
-		<%= attachment_image_tag recipe, :image, size: "200x200", format: 'jpeg', fallback: 'no_image.jpg' %>
-		<%= recipe.name %>
-	<% end %>
-	<%= link_to "レシピ棚へ", homes_shelf_path %>
+	<div class="clearfix">
+		<h4>最近のレシピ</h4>
+		<% @recipes.each do |recipe| %>
+			<%= link_to recipe_path(recipe) do %>
+			<div class="book-recently">
+			<%= attachment_image_tag recipe, :image,size:"120x105", format:'jpeg', fallback: "no_image.jpg", class: "image-index"%><br>
+			<p class="recipe-label"><%= recipe.name %></p>
+			</div>
+			<% end %>
+		<% end %>
+		<%= link_to "レシピ棚へ", homes_shelf_path %>
+	</div>
 	<h4>管理者リンク</h4>
 	<table>
 		<tr>
@@ -42,7 +48,9 @@
 
 	<h4>最近のレシピ</h4>
 	<% @recipes.each do |recipe| %>
-		<%= attachment_image_tag recipe, :image, size: "200x200", format: 'jpeg', fallback: 'no_image.jpg' %>
-		<%= recipe.name %>
+		<div class="book-recently">
+		<%= attachment_image_tag recipe, :image,size:"120x105", format:'jpeg', fallback: "no_image.jpg", class: "image-index"%><br>
+		<p class="recipe-label"><%= recipe.name %></p>
+		</div>
 	<% end %>
 <% end %>
