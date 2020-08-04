@@ -1,7 +1,11 @@
 class RecipesController < ApplicationController
 
   def index
-    @recipes = Recipe.all
+    if params[:genre_id]
+      @recipes = Recipe.where(genre_id: params[:genre_id])
+    else
+      @recipes = Recipe.where(is_valid: true).order(created_at: :desc)
+    end
   end
 
   def show
@@ -43,7 +47,6 @@ class RecipesController < ApplicationController
   def create
     @recipe = Recipe.new(recipe_params)
     @recipe.user_id = current_user.id
-    byebug
     if @recipe.save
       redirect_to recipe_path(@recipe), notice: "レシピを保存しました!"
     else

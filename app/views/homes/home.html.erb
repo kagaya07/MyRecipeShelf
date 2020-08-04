@@ -1,3 +1,42 @@
-<h4>ログイン後最初のページ</h4>
 
-<%= link_to " logout", destroy_user_session_path, method: :delete %>
+<h1>Home</h1>
+
+<h4>新着レシピ</h4>
+<% @recipes.each do |recipe| %>
+	<div class="book">
+		<%= link_to recipe_path(recipe) do %>
+		<%= attachment_image_tag recipe, :image,size:"120x105", format:'jpeg', fallback: "no_image.jpg", class: "image-index"%><br>
+		<p class="recipe-label"><%= recipe.name %></p>
+		<% end %>
+	</div>
+	<%= recipe.name %>
+	<div id="like-<%= recipe.id %>">
+		<%= render partial: 'favorites/favorite' , locals:{ recipe: recipe } %>
+	</div>
+	<%= recipe.explanation %>
+<% end %>
+<%= link_to 'レシピ一覧へ >', recipes_path %>
+
+
+<h4>レシピランキング</h4>
+<% @recipes_rank.each.with_index(1) do |topic, i| %>
+	<%= i %>位
+	<div class="book">
+		<%= link_to recipe_path(topic) do %>
+		<%= attachment_image_tag topic, :image,size:"120x105", format:'jpeg', fallback: "no_image.jpg", class: "image-index"%><br>
+		<p class="recipe-label"><%= topic.name %></p>
+		<% end %>
+	</div>
+	<%= topic.name %>
+	<div id="like-<%= topic.id %>">
+		<%= render partial: 'favorites/favorite' , locals:{ recipe: topic } %>
+	</div>
+	<%= topic.explanation %>
+<% end %>
+
+<h4>ジャンルで調べる</h4>
+	<% @genres.each do |genre| %>
+		<%= link_to recipes_path(@recipe, genre_id: genre.id) do %>
+			<%= genre.name %>
+		<% end %>
+	<% end %>

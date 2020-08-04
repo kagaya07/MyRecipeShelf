@@ -19,12 +19,73 @@
 .container-fluid {
 	margin-right: auto;
 	margin-left: auto;
-	max-width: 80%;
+	max-width: 85%;
+}
+
+header {
+	background-color: black;
+	opacity: 0.8;
+	border-radius: 0;
+	height: 120px;
+	width: 100%;
+}
+
+.logo {
+	width: 190px;
+	margin-left: 15px;
+	margin-top: 10px;
+	display: inline-block;
+}
+
+.nav-style {
+	width: 460px;
+	float: right;
+}
+
+.dropmenu {
+	background-color: #40e0d0;
+	padding: 0;
+	margin: 0;
+}
+
+.dropmenu li {
+	width: 150px;
+	display: inline-block;
+	list-style: none;
+	position: relative;
+}
+
+.dropmenu a {
+	background-color: #40e0d0;
+	color: white;
+	line-height: 40px;
+	text-align: center;
+	font-weight: bold;
+	text-decoration: none;
+	display: block;
+}
+
+.dropmenu a:hover {
+	background-color: #48d1cc;
+}
+
+.dropmenu ul {
+	display: none;
+	margin: 0px;
+    padding: 0px;
+    position: absolute;
+}
+
+.dropmenu ul li {
+	border-top: 1px solid pink;
+}
+
+.dropmenu li:hover ul {
+	display: block;
 }
 
 .body {
 	margin-top: 30px;
-	margin-bottom: 50px;
 }
 
 .clearfix::after {
@@ -179,4 +240,27 @@
 	float: right;
 	line-height: 200px;
 	margin-right: 10px;
+}
+
+.scroll {
+  overflow: auto;
+  white-space: nowrap;
+}
+
+.my-shelf {
+	margin: 0 auto;
+	background-image: url(shelf1.png);
+	background-size: cover;
+	width: 950px;
+	height: 810px;
+}
+
+.shelf-book {
+	width: 124px;
+	margin-top: 30px;
+	margin-left: 90px;
+	margin-right: 0px;
+	margin-bottom: 15px;
+	border: solid 2px #a9a9a9;
+	float: left;
 }

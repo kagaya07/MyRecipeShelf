@@ -4,7 +4,6 @@ class CommentsController < ApplicationController
   	comment = Comment.new(comment_params)
   	comment.user_id = current_user.id
     comment.recipe_id = recipe.id
-    byebug
     comment.save
     redirect_to recipe_path(recipe), notice: "コメントしました!"
   end

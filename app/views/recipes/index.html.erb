@@ -1,6 +1,9 @@
 
-<h1>Recipe Index</h1>
-
+<% if params[:genre_id] %>
+	<h1>Genre Index</h1>
+<% else %>
+	<h1>Recipe Index</h1>
+<% end %>
 <div class="recipe-index">
 	<% @recipes.each do |recipe| %>
 	<div class="recipe-box clearfix">

@@ -32,7 +32,7 @@
 
     <div class="cook clearfix">
 		<%= f.fields_for :cooks do |cook| %>
-		<%= render 'cook_fields', f: cook %>
+		<%= render 'cook_fields', f: cook, locals:{ cook: cook } %>
 		<% end %>
 	</div>
 

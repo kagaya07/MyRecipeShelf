@@ -3,3 +3,15 @@
 	<div class="flash notice"><%= flash[:notice] %></div>
 <% end %>
 
+<div class="scroll">
+	<div class="my-shelf">
+		<% @recipes.each do |recipe| %>
+		<%= link_to recipe_path(recipe) do %>
+		<div class="shelf-book">
+			<%= attachment_image_tag recipe, :image,size:"120x105", format:'jpeg', fallback: "no_image.jpg", class: "image-index"%><br>
+			<p class="recipe-label"><%= recipe.name %></p>
+			</div>
+		<% end %>
+		<% end %>
+	</div>
+</div>

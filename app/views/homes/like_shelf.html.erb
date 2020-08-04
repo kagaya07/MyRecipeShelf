@@ -1,0 +1,13 @@
+<h1>favorite Shelf</h1>
+<div class="scroll">
+	<div class="my-shelf">
+		<% @favorites.each do |like| %>
+		<%= link_to recipe_path(like.recipe_id) do %>
+		<div class="shelf-book">
+			<%= attachment_image_tag like.recipe, :image,size:"120x105", format:'jpeg', fallback: "no_image.jpg", class: "image-index"%><br>
+			<p class="recipe-label"><%= like.recipe.name %></p>
+			</div>
+		<% end %>
+		<% end %>
+	</div>
+</div>
