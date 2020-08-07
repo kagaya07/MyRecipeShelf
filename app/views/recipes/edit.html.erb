@@ -1,4 +1,4 @@
-
+<div class="container-fluid body">
 <h3>Recipes Edit</h3>
 <% @recipe.errors.full_messages.each do |message| %>
 		<li><%= message %></li>
@@ -41,3 +41,4 @@
 	<label><%= f.radio_button :is_valid, false %> 非公開</label>
 	<%= f.submit '編集保存', class: "btn"%>
 <% end %>
+</div>

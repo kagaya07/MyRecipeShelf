@@ -1,10 +1,13 @@
 class RecipesController < ApplicationController
+  before_action :user_role_create, except: [:index, :show]
 
   def index
     if params[:genre_id]
-      @recipes = Recipe.where(genre_id: params[:genre_id])
+      @recipes = Recipe.where(genre_id: params[:genre_id], is_valid: true).page(params[:page]).per(5)
     else
-      @recipes = Recipe.where(is_valid: true).order(created_at: :desc)
+      @q = Recipe.ransack(params[:q])
+      @recipes = @q.result(distinct: true, is_valid: true).order(created_at: :desc).page(params[:page]).per(5)
+      #is_valid: trueだけ表示したい
     end
   end
 
@@ -16,8 +19,12 @@ class RecipesController < ApplicationController
   end
 
   def edit
-    @recipe = Recipe.find(params[:id])
-    @cooks = @recipe.cooks
+    if @recipe.user == current_user
+      @recipe = Recipe.find(params[:id])
+      @cooks = @recipe.cooks
+    else
+      render :show
+    end
   end
 
   def update

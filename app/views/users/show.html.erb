@@ -1,27 +1,17 @@
+<div class="container-fluid body">
 <h3>User Show</h3>
 
-<% if @user.role == "admin" %>
-
-	<%= attachment_image_tag @user, :image, size: "200x200", format: 'jpeg', fallback: 'no_image.jpg', style: "border-radius: 50%" %>
-	<label>ニックネーム</label>
-	<%= @user.name %>
-	<label>得意料理</label>
-	<%= @user.specialties %>
+<%= attachment_image_tag @user, :image, size: "200x200", format: 'jpeg', fallback: 'no_image.jpg', style: "border-radius: 50%" %>
+<label>ニックネーム</label>
+<%= @user.name %>
+<label>得意料理</label>
+<%= @user.specialties %>
+<% if @user.id == current_user.id %>
 	<%= link_to "プロフィール編集", edit_user_path(@user) %>
-	<%= link_to "パスワード編集", edit_user_path(@user) %>
+<% end %>
 
-	<div class="clearfix">
-		<h4>最近のレシピ</h4>
-		<% @recipes.each do |recipe| %>
-			<%= link_to recipe_path(recipe) do %>
-			<div class="book-recently">
-			<%= attachment_image_tag recipe, :image,size:"120x105", format:'jpeg', fallback: "no_image.jpg", class: "image-index"%><br>
-			<p class="recipe-label"><%= recipe.name %></p>
-			</div>
-			<% end %>
-		<% end %>
-		<%= link_to "レシピ棚へ", homes_shelf_path %>
-	</div>
+<% if current_user.role == "admin" %>
+
 	<h4>管理者リンク</h4>
 	<table>
 		<tr>
@@ -37,20 +27,21 @@
 			<td><%= link_to "リンク", recipes_path %></td>
 		</tr>
 	</table>
+
 <% else %>
-	<%= attachment_image_tag @user, :image, size: "200x200", format: 'jpeg', fallback: 'no_image.jpg', style: "border-radius: 50%" %>
-	<label>ニックネーム</label>
-	<%= @user.name %>
-	<label>得意料理</label>
-	<%= @user.specialties %>
-	<%= link_to "プロフィール編集", edit_user_path(@user) %>
-	<%= link_to "パスワード編集", edit_user_path(@user) %>
 
 	<h4>最近のレシピ</h4>
 	<% @recipes.each do |recipe| %>
+	<%= link_to recipe_path(recipe) do %>
 		<div class="book-recently">
 		<%= attachment_image_tag recipe, :image,size:"120x105", format:'jpeg', fallback: "no_image.jpg", class: "image-index"%><br>
 		<p class="recipe-label"><%= recipe.name %></p>
 		</div>
 	<% end %>
+	<% end %>
+	<% if @user.id == current_user.id %>
+		<%= link_to "レシピ棚へ", homes_shelf_path %>
+	<% end %>
+
 <% end %>
+</div>

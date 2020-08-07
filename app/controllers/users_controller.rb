@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+  before_action :user_role_create
+  before_action :user_role, only: [:index]
+
   def index
     @users = User.all
   end
@@ -10,6 +13,11 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
+    if @user.id == current_user.id
+      render :edit
+    else
+      render :show
+    end
   end
 
   def update

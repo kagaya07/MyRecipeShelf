@@ -11,6 +11,10 @@ class Recipe < ApplicationRecord
 	accepts_nested_attributes_for :mterials, allow_destroy: true
 	attachment :image
 
+	validates :name, presence: true
+	validates :amount, presence: true
+	validates :explanation, length: { maximum: 100 }
+
 	def favorited_by?(user)
     	favorites.where(user_id: user.id).exists?
     end

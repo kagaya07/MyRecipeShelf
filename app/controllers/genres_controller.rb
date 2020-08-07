@@ -1,11 +1,14 @@
 class GenresController < ApplicationController
-  def index
-  	@genre = Genre.new
-  	@genres = Genre.all
-  end
+  before_action :user_role
 
-  def edit
-  	@genre = Genre.find(params[:id])
+  def index
+    @genres = Genre.all
+
+  	if params[:id].present?
+      @genre = Genre.find(params[:id])
+    else
+      @genre = Genre.new
+    end
   end
 
   def update

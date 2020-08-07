@@ -23,27 +23,27 @@
 }
 
 header {
-	background-color: black;
-	opacity: 0.8;
+	background:  #998d7a;
 	border-radius: 0;
-	height: 120px;
+	height: 75px;
 	width: 100%;
+	border-bottom: 5px white solid;
 }
 
 .logo {
-	width: 190px;
+	width: 80px;
 	margin-left: 15px;
 	margin-top: 10px;
 	display: inline-block;
 }
 
 .nav-style {
-	width: 460px;
+	width: 620px;
 	float: right;
 }
 
 .dropmenu {
-	background-color: #40e0d0;
+	background-color: #998d7a;
 	padding: 0;
 	margin: 0;
 }
@@ -56,17 +56,19 @@ header {
 }
 
 .dropmenu a {
-	background-color: #40e0d0;
+	background-color: #998d7a;
 	color: white;
 	line-height: 40px;
 	text-align: center;
 	font-weight: bold;
 	text-decoration: none;
 	display: block;
+	height: 70px;
+	line-height: 70px;
 }
 
 .dropmenu a:hover {
-	background-color: #48d1cc;
+	background-color: #665e52;
 }
 
 .dropmenu ul {
@@ -215,7 +217,7 @@ header {
 	border-top: solid 1px #a9a9a9;
 	line-height: 45px;
 	text-align: center;
-	background-color: #fdf5e6;
+	background:linear-gradient(135deg, #ffe9a8 0%,#ff884c 100%);
 	margin: 0;
 }
 
@@ -263,4 +265,73 @@ header {
 	margin-bottom: 15px;
 	border: solid 2px #a9a9a9;
 	float: left;
+	box-shadow: 0 8px 20px 0 rgba(0, 0, 0, .5);
+}
+
+.home-box {
+	display: inline-block;
+	width: 250px;
+	height: 260px;
+}
+
+.home-like {
+	display: inline-block;
+}
+
+.home-link {
+	widht: 100%;
+	height: 260px;
+}
+
+.home-explanation {
+	height: 60px;
+}
+
+.top_image {
+	background-image: url(2034703.jpg);
+	background-size: cover;
+	background-attachment: fixed;
+	position:relative;
+}
+
+.box {
+	height: 50px;
+}
+
+.about_box {
+	width: 100%;
+	height: 500px;
+}
+
+.top_title {
+	width: 70%;
+	height: 400px;
+	background-color: #ffffff;
+	opacity: 0.9;
+	border-radius: 50px;
+	margin: 0 auto;
+	margin-top: 50px;
+	text-align: center;
+}
+
+.staut_button {
+	width: 408px;
+	margin: 0 auto;
+	padding-bottom: 100px;
+}
+
+.staut {
+	background-color: #998d7a;
+	color: white;
+	width: 200px;
+	border: 2px white solid;
+}
+
+.about {
+	line-height: 90px;
+}
+
+.about_text {
+	line-height: 40px;
+	font-size: 20px;
 }

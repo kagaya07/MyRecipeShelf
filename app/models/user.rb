@@ -8,4 +8,11 @@ class User < ApplicationRecord
   has_many :favorites, dependent: :destroy
   enum role: { admin: 1, customer: 2, sub_customer:3 }
   attachment :image
+
+
+  validates :name,
+	  uniqueness: { case_sensitive: :false },
+	  length: { minimum: 2, maximum: 20 }
+  validates :specialties,
+	  length: { maximum: 20 }
 end

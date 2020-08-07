@@ -1,4 +1,15 @@
+<div class="container-fluid body">
 <h1>favorite Shelf</h1>
+
+
+<select onChange="myfunc(this.value)">
+	<option value=””>--並びを変える--</option>
+	<option value= "1">ジャンル順</option>
+	<option value= "2">古い順</option>
+	<option value= "3">新着順</option>
+</select>
+
+<%= paginate @favorites %>
 <div class="scroll">
 	<div class="my-shelf">
 		<% @favorites.each do |like| %>
@@ -10,4 +21,11 @@
 		<% end %>
 		<% end %>
 	</div>
+</div>
+
+<script type="text/javascript">
+    function myfunc(value) {
+      window.location.replace('/homes/like/?option=' + value);
+    }
+</script>
 </div>

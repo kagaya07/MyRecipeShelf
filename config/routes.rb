@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     resource :favorites, only: [:create, :destroy]
     resources :comments, only: [:create, :destroy]
   end
-  resources :genres, only: [:index, :update, :create, :edit]
+  resources :genres, only: [:index, :update, :create]
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -22,7 +22,7 @@
           				<p>無効</p>
           			<% end %>
           	</td>
-			<td><%= link_to "編集する", edit_genre_path(genre) %></td>
+			<td><%= link_to "編集する", genres_path(id: genre.id) %></td>
 		</tr>
 	</tbody>
 	<% end %>
