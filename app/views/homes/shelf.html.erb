@@ -1,19 +1,21 @@
 <div class="container-fluid body">
-<h1>Users Shelf</h1>
+<h1 class="heading">Users Shelf</h1>
 <% if flash[:notice] %>
 	<div class="flash notice"><%= flash[:notice] %></div>
 <% end %>
 
-<select onChange="myfunc(this.value)">
+<div class="select_box">
+<select onChange="myfunc(this.value)" class="select">
 	<option value=””>--並びを変える--</option>
 	<option value= "1">料理名順</option>
 	<option value= "2">ジャンル順</option>
 	<option value= "3">古い順</option>
 	<option value= "4">新着順</option>
 </select>
+</div>
 
+<div class="heading pagination-sm my_page"><%= paginate @recipes %></div>
 
-<%= paginate @recipes %>
 <div class="scroll">
 	<div class="my-shelf">
 		<% @recipes.each do |recipe| %>
@@ -26,6 +28,7 @@
 		<% end %>
 	</div>
 </div>
+
 
 <!--javascriptでselectタグの選んだoptionのvalueを持ってurlに飛ぶ-->
 <script type="text/javascript">

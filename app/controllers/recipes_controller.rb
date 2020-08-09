@@ -19,8 +19,8 @@ class RecipesController < ApplicationController
   end
 
   def edit
-    if @recipe.user == current_user
-      @recipe = Recipe.find(params[:id])
+     @recipe = Recipe.find(params[:id])
+    if @recipe.user_id == current_user.id
       @cooks = @recipe.cooks
     else
       render :show

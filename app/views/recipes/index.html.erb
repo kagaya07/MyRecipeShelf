@@ -2,7 +2,7 @@
 <% if params[:genre_id] %>
 	<h1>Genre Index</h1>
 <% else %>
-	<h1>Recipe Index</h1>
+	<h1 class="heading">Recipe Index</h1>
 
 <%= search_form_for @q do |f| %>
 　<%= f.label :name, "ジャンル" %>
@@ -18,24 +18,25 @@
 	<%if recipe.is_valid == true %>
 	<div class="recipe-box clearfix">
 		<div class="book-area">
-			<div class="book">
+			<div class="book book_index">
 			<%= attachment_image_tag recipe, :image,size:"120x105", format:'jpeg', fallback: "no_image.jpg", class: "image-index"%><br>
 			<p class="recipe-label" style="background-color: #fdf5e6;"><%= recipe.name %></p>
 			</div>
-			<div id="like-<%= recipe.id %>">
+			<div id="like-<%= recipe.id %>" class="recipe_like">
 			<%= render partial: 'favorites/favorite' , locals:{ recipe: recipe } %>
 			</div>
 		</div>
 
 		<div class="recipe-text">
-			<div class="recipe-name-index"><%= recipe.name %>　　<%= recipe.user.name %></div><br><br>
-			<div class="explanation-index"><%= recipe.explanation %></div>
+			<h3 class="recipe-name-index"><%= recipe.name %></h3>
+			<div class="recipe_user">by <%= recipe.user.name %></div><br><br>
+			<div><%= recipe.explanation %></div>
 
 		</div>
-		<div class="recipe-link"><%= link_to "レシピを見る", recipe_path(recipe), class:"btn btn-info active" %></div>
+		<div class="recipe-link"><%= link_to "レシピを見る", recipe_path(recipe), class:"btn link_recipe" %></div>
 	</div>
 	<% end %>
 	<% end %>
 </div>
-<%= paginate @recipes %>
+<div class="heading pagination-sm"><%= paginate @recipes %>
 </div>

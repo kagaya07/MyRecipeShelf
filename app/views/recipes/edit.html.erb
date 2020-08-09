@@ -1,11 +1,11 @@
-<div class="container-fluid body">
-<h3>Recipes Edit</h3>
+<div class="container-fluid body recipe_page">
+<h1 class="heading">Recipes Edit</h1>
 <% @recipe.errors.full_messages.each do |message| %>
 		<li><%= message %></li>
 	<% end %>
 
 <%= form_for(@recipe, url: recipe_path) do |f| %>
-	<%= f.text_field :name, placeholder: "タイトルを入力", :class => "title" %>
+	<%= f.text_field :name, placeholder: "タイトルを入力(20文字まで)", :class => "title" %>
 	<%= f.label :ジャンル選択 %>
 	<%= f.collection_select :genre_id, Genre.where(is_vaild: true), :id, :name, { include_blank: true }, class: "status" %><br>
 
@@ -36,7 +36,7 @@
 		<% end %>
 	</div>
 
-	<%= f.text_area :explanation, placeholder: "レシピの簡単な説明など" %>
+	<%= f.text_area :explanation, placeholder: "レシピの簡単な説明など(100文字まで)", :size => "100" %>
 	<label><%= f.radio_button :is_valid, true %> 公開</label>
 	<label><%= f.radio_button :is_valid, false %> 非公開</label>
 	<%= f.submit '編集保存', class: "btn"%>

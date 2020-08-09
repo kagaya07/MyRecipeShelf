@@ -6,7 +6,7 @@ class HomesController < ApplicationController
 
  def home
  	@genres = Genre.all
- 	@recipes = Recipe.where(is_valid: true).order(created_at: :desc).limit(4)
+ 	@recipes = Recipe.where(is_valid: true).order(created_at: :desc).limit(5)
  	# ランキング用に取得した情報をいれるcreate_ranksはクラスメソッド
  	@recipes_rank = Recipe.create_ranks
  end

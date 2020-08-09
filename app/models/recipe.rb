@@ -11,7 +11,7 @@ class Recipe < ApplicationRecord
 	accepts_nested_attributes_for :mterials, allow_destroy: true
 	attachment :image
 
-	validates :name, presence: true
+	validates :name, presence: true, length: { maximum: 20 }
 	validates :amount, presence: true
 	validates :explanation, length: { maximum: 100 }
 

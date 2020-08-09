@@ -1,52 +1,55 @@
-<div class="container-fluid body">
+<div class=" body">
 <% if flash[:notice] %>
 	<div class="flash notice"><%= flash[:notice] %></div>
 <% end %>
-<h1>Home</h1>
+<h1 class="heading">Home</h1>
 
-<h4>新着レシピ</h4>
+<h3 class="heading_second">新着レシピ</h3>
 <div class="home-rank">
-<% @recipes.each do |recipe| %>
-<div class="home-box">
-	<div class="book">
-		<%= link_to recipe_path(recipe) do %>
-		<%= attachment_image_tag recipe, :image,size:"120x105", format:'jpeg', fallback: "no_image.jpg", class: "image-index"%><br>
-		<p class="recipe-label"><%= recipe.name %></p>
-		<% end %>
+	<% @recipes.each do |recipe| %>
+	<div class="home-box">
+		<div class="book book-home">
+			<%= link_to recipe_path(recipe) do %>
+			<%= attachment_image_tag recipe, :image,size:"120x105", format:'jpeg', fallback: "no_image.jpg", class: "image-index"%><br>
+			<p class="recipe-label"><%= recipe.name %></p>
+			<% end %>
+		</div>
+		<div id="like-<%= recipe.id %>" class="home-like">
+			<%= render partial: 'favorites/favorite' , locals:{ recipe: recipe } %>
+		</div><br>
+		<div class="user_name_home"><%= recipe.name %></div>
+		<div class="home-explanation"><%= recipe.explanation %></div>
 	</div>
-	<%= recipe.name %>
-	<div id="like-<%= recipe.id %>" class="home-like">
-		<%= render partial: 'favorites/favorite' , locals:{ recipe: recipe } %>
-	</div>
-	<div class="home-explanation"><%= recipe.explanation %></div>
+	<% end %>
 </div>
-<% end %>
-	<%= link_to 'レシピ一覧へ >', recipes_path ,:class => "home-link"%>
+<%= link_to 'レシピ一覧へ >', recipes_path ,:class => "home-link"%>
+
+<h3 class="heading_second">レシピランキング</h3>
+<div class="home-rank">
+	<% @recipes_rank.each.with_index(1) do |topic, i| %>
+	<div class="home-box">
+		<p class="rank"><%= i %>位</p>
+		<div class="book-home">
+			<%= link_to recipe_path(topic) do %>
+			<%= attachment_image_tag topic, :image,size:"120x105", format:'jpeg', fallback: "no_image.jpg", class: "image-index"%><br>
+			<p class="recipe-label"><%= topic.name %></p>
+			<% end %>
+		</div>
+		<div id="like-<%= topic.id %>" class="home-like">
+			<%= render partial: 'favorites/favorite' , locals:{ recipe: topic }%>
+		</div>
+		<div class="user_name_home"><%= topic.name %></div>
+		<p class="home-explanation"><%= topic.explanation %></p>
+	</div>
+	<% end %>
 </div>
 
-<h4>レシピランキング</h4>
-<% @recipes_rank.each.with_index(1) do |topic, i| %>
-<div class="home-box">
-	<%= i %>位
-	<div class="book">
-		<%= link_to recipe_path(topic) do %>
-		<%= attachment_image_tag topic, :image,size:"120x105", format:'jpeg', fallback: "no_image.jpg", class: "image-index"%><br>
-		<p class="recipe-label"><%= topic.name %></p>
-		<% end %>
-	</div>
-	<%= topic.name %>
-	<div id="like-<%= topic.id %>" class="home-like">
-		<%= render partial: 'favorites/favorite' , locals:{ recipe: topic }%>
-	</div>
-	<div class="home-explanation"><%= topic.explanation %></div>
-</div>
-<% end %>
-
-<h4>ジャンルで調べる</h4>
+<h3 class="heading_second">ジャンルで調べる</h3>
+<div class="home-genre">
 	<% @genres.each do |genre| %>
 		<%= link_to recipes_path(@recipe, genre_id: genre.id) do %>
-			<%= genre.name %>
+			<p class="genre_link"><%= genre.name %></p>
 		<% end %>
 	<% end %>
-
+</div>
 </div>

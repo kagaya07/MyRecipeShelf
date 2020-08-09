@@ -1,5 +1,5 @@
-<div class="container-fluid body">
-<h3>Recipes Show</h3>
+<div class="container-fluid body recipe_page">
+<h1 class="heading">Recipes Show</h1>
 <% if flash[:notice] %>
 	<div class="flash notice"><%= flash[:notice] %></div>
 <% end %>
@@ -30,11 +30,11 @@
 </div>
 
 <div class="clearfix">
-<h5>作り方</h5>
+<h3>作り方</h3>
 <% n = 1 %>
 <% @cooks.each do |cook| %>
 	<div class="cook-show">
-	<%= n %>.<br>
+	<p class="number"><%= n %>.</p>
 	<%= attachment_image_tag cook, :image,size:"200x200", format:'jpeg'%><br>
 	<p class="cook-body"><%= cook.body %></p>
 	</div>
@@ -42,12 +42,13 @@
 <% end %>
 </div>
 
-<h5>レシピの説明</h5>
+<h3>レシピの説明</h3>
 <div class="explanation-show">
 	<%= @recipe.explanation %>
 </div>
 
-<h5>ジャンル</h5>
+<h3>ジャンル</h3>
+<div class="information">
 <p class="genre-show"><%= @recipe.genre.name %></p>
 <% if @recipe.is_valid== true %>
 	<p class="is_valid-show">公開中</p>
@@ -60,18 +61,18 @@
 <% elsif current_user.role == "admin" %>
 	<%= link_to "レシピを削除する", recipe_path(@recipe.id), method: :delete, data: {confirm: "本当に削除しますか？"},class: "btn btn-danger active" %>
 <% end %>
+</div>
 
 <div class="comment-box">
 	<%= form_for [@recipe, @comment] do |c| %>
-		<labal>コメント</labal>
-		<%= c.text_area :body, class: "form_control" %>
-		<%= c.submit "コメントを送る", class: "btn btn-info"%>
+		<h3>コメント</h3><br>
+		<div class="comment_add"><%= c.text_area :body, class: "form_control", :size => "50" %>
+		<%= c.submit "コメントを送る", class: "btn staut comment_btn"%></div>
 	<% end %>
-	<table>
+	<table class="table comment_table">
 	<% @recipe.comments.each do |comment| %>
 		<tr>
-		<td><%= attachment_image_tag comment.user, :image, size:"40x40", format: 'jpeg', fallback: "no_image.jpg", style: "border-radius: 50%" %></td>
-		<td><%= comment.user.name %></td>
+		<td><%= attachment_image_tag comment.user, :image, size:"40x40", format: 'jpeg', fallback: "no_image.jpg", style: "border-radius: 50%" %><br><%= comment.user.name %></td>
 		<td><%= comment.body %></td>
 		<td><% if comment.user == current_user || current_user.role == "admin" %>
 			<%= link_to "Destroy", recipe_comment_path(comment.recipe, comment), method: :delete,class: "btn btn-danger pull-right red" %>

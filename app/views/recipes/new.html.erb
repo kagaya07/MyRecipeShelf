@@ -1,5 +1,5 @@
-<div class="container-fluid body">
-<h3>New Recipe</h3>
+<div class="container-fluid body recipe_page">
+<h1 class="heading">New Recipe</h1>
 <% @recipe.errors.full_messages.each do |message| %>
 		<li><%= message %></li>
 	<% end %>
@@ -36,7 +36,7 @@
 		<% end %>
 	</div>
 
-	<%= f.text_area :explanation, placeholder: "レシピの簡単な説明、ポイントなど" %>
+	<%= f.text_area :explanation, placeholder: "レシピの簡単な説明、ポイントなど", :size => "100" %>
 	<label><%= f.radio_button :is_valid, true %> 公開</label>
 	<label><%= f.radio_button :is_valid, false %> 非公開</label>
 	<%= f.submit '保存', class: "btn"%>

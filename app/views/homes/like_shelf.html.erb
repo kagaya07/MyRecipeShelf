@@ -1,15 +1,16 @@
 <div class="container-fluid body">
 <h1>favorite Shelf</h1>
 
-
+<div class="select_box_like">
 <select onChange="myfunc(this.value)">
 	<option value=””>--並びを変える--</option>
 	<option value= "1">ジャンル順</option>
 	<option value= "2">古い順</option>
 	<option value= "3">新着順</option>
 </select>
+<div class="my_page"><%= paginate @favorites %></div>
+</div>
 
-<%= paginate @favorites %>
 <div class="scroll">
 	<div class="my-shelf">
 		<% @favorites.each do |like| %>
