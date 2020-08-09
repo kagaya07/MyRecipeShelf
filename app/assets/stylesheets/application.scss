@@ -17,6 +17,16 @@
 @import "bootstrap";
 
 // 全体
+p, h2, h3 {
+	font-family: "azuki";
+}
+
+h1 {
+	font-family: 'Comic Sans MS';
+}
+
+
+
 .container-fluid {
 	margin-right: auto;
 	margin-left: auto;
@@ -45,6 +55,7 @@ body {
 .heading_second {
 	margin-top: 100px;
 	margin-left: 100px;
+	color: #998d7a;
 }
 
 .pagination > li > a{
@@ -62,9 +73,13 @@ body {
 	color: #ffffff;
 }
 
+h3 {
+	color: #998d7a;
+}
+
 // ヘッダー
 header {
-	background:  #998d7a;
+	background: #998d7a;
 	border-radius: 0;
 	height: 75px;
 	width: 100%;
@@ -72,9 +87,9 @@ header {
 }
 
 .logo {
-	width: 80px;
+	width: 180px;
 	margin-left: 15px;
-	margin-top: 10px;
+	margin-top: 3px;
 	display: inline-block;
 }
 
@@ -248,6 +263,13 @@ header {
 	display:inline-block;
 }
 
+.btn_create {
+	background-color: #998d7a;
+	color: #ffffff;
+	height: 25px;
+	line-height: 13px;
+	margin-left :50px;
+}
 
 // Recipe index
 .recipe-index {
@@ -348,6 +370,7 @@ header {
 
 .select_box, .select_box_like {
 	display: inline-block;
+	position: relative;
 }
 
 .select_box select {
@@ -372,12 +395,11 @@ header {
 
 .my_page {
 	display: inline-block;
-	position: relative;
 	width: 300px;
 	height: 37px;
 }
 
-.pagination {
+.my_page > .pagination {
 	margin: 0;
 	position: absolute;
 	bottom: 0;
@@ -447,7 +469,7 @@ header {
 .home-link {
 	float: right;
 	margin-right: 10px;
-	color: black;
+	color: #998d7a;
 }
 
 .home-explanation {
@@ -468,6 +490,10 @@ header {
 
 .user_name_home {
 	text-align: center;
+	height: 20px;
+	margin-bottom: 10px;
+	overflow: scroll;
+	font-weight: 600;
 }
 
 .rank {
@@ -573,3 +599,26 @@ em {
 	text-align: center;
 }
 
+// User
+
+.user_image {
+	display: inline-block;
+}
+
+.user_info {
+	display: inline-block;
+	margin-left: 200px;
+}
+
+.user_label {
+	width: 150px;
+	color: #998d7a;
+}
+
+.user_shelf_link {
+	margin-top: 148px;
+}
+
+.new_books {
+	margin-left: 60px;
+}

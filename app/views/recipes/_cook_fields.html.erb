@@ -1,7 +1,10 @@
-
 <div class="nested-fields cook-add">
-<%= attachment_image_tag @cook, :image,size:"160x150", format:'jpeg', fallback: "no_image.jpg" %>
-<%= f.attachment_field :image %>
-<%= f.text_area :body, placeholder: "作り方を記入" %><br>
-<%= link_to_remove_association '削除', f %>
+	<% if f.object.image_id %>
+		<%= attachment_image_tag f.object, :image,size:"160x150", format:'jpeg', fallback: "no_image.jpg" %>
+	<% else %>
+		<%= image_tag 'no_image.jpg', size:"160x150" %>
+	<% end %>
+	<%= f.attachment_field :image %>
+	<%= f.text_area :body, placeholder: "作り方を記入" %><br>
+	<%= link_to_remove_association '削除', f %>
 </div>
