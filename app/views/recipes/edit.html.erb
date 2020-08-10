@@ -1,2 +1,45 @@
-<h1>Recipes#edit</h1>
-<p>Find me in app/views/recipes/edit.html.erb</p>
+<div class="container-fluid body recipe_page">
+	<h1 class="heading">Recipes Edit</h1>
+	<% @recipe.errors.full_messages.each do |message| %>
+			<li><%= message %></li>
+	<% end %>
+
+	<%= form_for(@recipe, url: recipe_path) do |f| %>
+		<%= f.text_field :name, placeholder: "タイトルを入力(20文字まで)", :class => "title" %>
+		<%= f.label :ジャンル選択 %>
+		<%= f.collection_select :genre_id, Genre.where(is_vaild: true), :id, :name, { include_blank: true }, class: "status" %><br>
+
+		<div class="top clearfix">
+			<%= f.attachment_field :image, class: "image_add" %>
+			<%= attachment_image_tag @recipe, :image,size:"250x230", format:'jpeg', fallback: "no_image.jpg", :class => "recipe-image"%>
+
+			<%= f.number_field :amount, class: "amount"%>人前<br>
+			<div id="mterial">
+				<table>
+					<%= f.fields_for :mterials do |mterial| %>
+					<%= render 'mterial_fields', f: mterial %>
+					<% end %>
+				</table>
+			</div><br>
+		<%= link_to_add_association '材料を追加', f, :mterials, :class => "add-mterial", data: {
+			association_insertion_node: '#mterial',
+	     	association_insertion_method: 'append'} %>
+		</div>
+
+	    <%= link_to_add_association '作り方を追加', f, :cooks,
+	    	data: {
+			association_insertion_node: '.cook',
+	     	association_insertion_method: 'append'} , :class => "add-cook"%>
+
+	    <div class="cook clearfix">
+	    	<%= f.fields_for :cooks do |cook| %>
+				<%= render 'cook_fields', f: cook %>
+			<% end %>
+		</div>
+
+		<%= f.text_area :explanation, placeholder: "レシピの簡単な説明など(100文字まで)", :size => "100" %>
+		<label><%= f.radio_button :is_valid, true %> 公開</label>
+		<label><%= f.radio_button :is_valid, false %> 非公開</label>
+		<%= f.submit '編集保存', class: "btn"%>
+	<% end %>
+</div>

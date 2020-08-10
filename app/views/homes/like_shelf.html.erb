@@ -1,0 +1,32 @@
+<div class="container-fluid body">
+<h1 class="heading">Likes Recipe</h1>
+
+<div class="select_box_like">
+<select onChange="myfunc(this.value)">
+	<option value=””>--並びを変える--</option>
+	<option value= "1">ジャンル順</option>
+	<option value= "2">古い順</option>
+	<option value= "3">新着順</option>
+</select>
+<div class="my_page"><%= paginate @favorites %></div>
+</div>
+
+<div class="scroll">
+	<div class="my-shelf">
+		<% @favorites.each do |like| %>
+		<%= link_to recipe_path(like.recipe_id) do %>
+		<div class="shelf-book">
+			<%= attachment_image_tag like.recipe, :image,size:"120x105", format:'jpeg', fallback: "no_image.jpg", class: "image-index"%><br>
+			<p class="recipe-label"><%= like.recipe.name %></p>
+			</div>
+		<% end %>
+		<% end %>
+	</div>
+</div>
+
+<script type="text/javascript">
+    function myfunc(value) {
+      window.location.replace('/homes/like/?option=' + value);
+    }
+</script>
+</div>

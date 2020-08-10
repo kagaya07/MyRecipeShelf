@@ -1,43 +1,44 @@
-<div class="row top">
-	<h3>New Recipe</h3>
-	<% @recipe.errors.full_messages.each do |message| %>
-   		<li><%= message %></li>
-  	<% end %>
-	<div class="col-xs-4">
-	<%= form_for(@recipe, url: recipes_path) do |f| %>
-		<%= f.text_field :name, placeholder: "タイトルを入力", :class => "title" %>
-		<%= f.label :ジャンル選択 %>
-		<%= f.collection_select :genre_id, Genre.where(is_vaild: true), :id, :name, { include_blank: true }, class: "status" %>
-		<div class="image">
-		<div class="recipe-image">
-		<%= attachment_image_tag @recipe, :image,size:"250x230", format:'jpeg', fallback: "no_image.jpg"%>
-		</div>
-		<%= f.attachment_field :image %>
-		</div>
-	</div>
-	<div class="col-xs-8">
-		<p class="amount"><%= f.number_field :amount %>人前</p>
-		<div class="mterial-form">
-			<table>
-			<%= f.fields_for :mterials do |mterial| %>
-			<%= render 'mterial_fields', f: mterial %>
-			<% end %>
-			</table>
-			<%= link_to_add_association '材料を追加', f, :mterials, :class => "add-mterial" %>
-	    </div>
-	</div>
-</div>
+<div class="container-fluid body recipe_page">
+<h1 class="heading">New Recipe</h1>
+<% @recipe.errors.full_messages.each do |message| %>
+		<li><%= message %></li>
+	<% end %>
 
-<div class="row bottom">
-    <div class="cook-form">
-    	<%= f.fields_for :cooks do |cook| %>
+<%= form_for(@recipe, url: recipes_path) do |f| %>
+	<%= f.text_field :name, placeholder: "タイトルを入力", :class => "title" %>
+	<%= f.label :ジャンル選択 %>
+	<%= f.collection_select :genre_id, Genre.where(is_vaild: true), :id, :name, { include_blank: true }, class: "status" %><br>
+
+	<div class="top clearfix">
+	<%= f.attachment_field :image, class: "image_add" %>
+	<%= attachment_image_tag @recipe, :image,size:"250x230", format:'jpeg', fallback: "no_image.jpg", :class => "recipe-image"%>
+
+	<%= f.number_field :amount, class: "amount"%>人前<br>
+	<div id="mterial">
+		<table>
+		<%= f.fields_for :mterials do |mterial| %>
+		<%= render 'mterial_fields', f: mterial %>
+		<% end %>
+		</table>
+	</div><br>
+	<%= link_to_add_association '材料を追加', f, :mterials, :class => "add-mterial", data: {
+		association_insertion_node: '#mterial',
+     	association_insertion_method: 'append'} %>
+    </div>
+
+    <%= link_to_add_association '作り方を追加', f, :cooks, data: {
+		association_insertion_node: '.cook',
+     	association_insertion_method: 'append'} , :class => "add-cook"%>
+
+    <div class="cook clearfix">
+		<%= f.fields_for :cooks do |cook| %>
 		<%= render 'cook_fields', f: cook %>
 		<% end %>
-		<%= link_to_add_association '作り方を追加', f, :cooks %>
-    </div>
-	<%= f.text_area :explanation, placeholder: "レシピの簡単な説明、ポイントなど" %>
+	</div>
+
+	<%= f.text_area :explanation, placeholder: "レシピの簡単な説明、ポイントなど", :size => "100" %>
 	<label><%= f.radio_button :is_valid, true %> 公開</label>
 	<label><%= f.radio_button :is_valid, false %> 非公開</label>
-	<%= f.submit '保存' %>
-	<% end %>
+	<%= f.submit '保存', class: "btn btn_create"%>
+<% end %>
 </div>

@@ -1,8 +1,6 @@
 <!-- nested-fieldsクラスでjqeryに認識させる -->
 <div class="nested-fields">
-<tr>
-	<td><%= f.text_field :name, placeholder: "(例) うさぎ" , :class => "mterial" %></td>
-	<td><%= f.text_field :puantity, placeholder: "(例)　1kg" , :class => "puantity"%></td>
-	<td><%= link_to_remove_association '削除', f %></td>
-</tr>
+	<%= f.text_field :name, placeholder: "(例) 鶏肉" , :class => "" %>
+	<%= f.text_field :puantity, placeholder: "(例)　1kg" , :class => ""%>
+	<%= link_to_remove_association '削除', f , :class=> ""%>
 </div>

@@ -1,2 +1,40 @@
-<h1>Users Shelf</h1>
+<div class="container-fluid body">
+<h1 class="heading">Recipe Shelf</h1>
+<% if flash[:notice] %>
+	<div class="flash notice"><%= flash[:notice] %></div>
+<% end %>
 
+<div class="select_box">
+<select onChange="myfunc(this.value)" class="select">
+	<option value=””>--並びを変える--</option>
+	<option value= "1">料理名順</option>
+	<option value= "2">ジャンル順</option>
+	<option value= "3">古い順</option>
+	<option value= "4">新着順</option>
+</select>
+</div>
+
+<div class="heading pagination-sm my_page"><%= paginate @recipes %></div>
+
+<div class="scroll">
+	<div class="my-shelf">
+		<% @recipes.each do |recipe| %>
+		<%= link_to recipe_path(recipe) do %>
+		<div class="shelf-book">
+			<%= attachment_image_tag recipe, :image,size:"120x105", format:'jpeg', fallback: "no_image.jpg", class: "image-index"%><br>
+			<p class="recipe-label"><%= recipe.name %></p>
+			</div>
+		<% end %>
+		<% end %>
+	</div>
+</div>
+
+
+<!--javascriptでselectタグの選んだoptionのvalueを持ってurlに飛ぶ-->
+<script type="text/javascript">
+    function myfunc(value) {
+      window.location.replace('/homes/shelf/?option=' + value);
+    }
+</script>
+
+</div>

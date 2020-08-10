@@ -1,15 +1,23 @@
 class UsersController < ApplicationController
+  before_action :user_role_create
+  before_action :user_role, only: [:index]
+
   def index
     @users = User.all
   end
 
   def show
     @user = User.find(params[:id])
-    @recipes = @user.recipes.order(created_at: :asc)
+    @recipes = @user.recipes.order(created_at: :desc).limit(5)
   end
 
   def edit
     @user = User.find(params[:id])
+    if @user.id == current_user.id
+      render :edit
+    else
+      render :show
+    end
   end
 
   def update

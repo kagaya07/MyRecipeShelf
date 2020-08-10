@@ -16,35 +16,609 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+// 全体
+p, h2, h3 {
+	font-family: "azuki";
+}
 
+h1 {
+	font-family: 'Comic Sans MS';
+}
+
+
+
+.container-fluid {
+	margin-right: auto;
+	margin-left: auto;
+	max-width: 85%;
+}
+
+.body {
+	margin-top: 30px;
+}
+
+.clearfix::after {
+	content: "";
+	display: block;
+	clear: both;
+}
+
+body {
+	background-color: rgb(255, 255, 240);
+}
+
+.heading {
+	text-align: center;
+	margin: 40px 0;
+}
+
+.heading_second {
+	margin-top: 100px;
+	margin-left: 100px;
+	color: #998d7a;
+}
+
+.pagination > li > a{
+	background: #998d7a;
+	border: #ffffff;
+	color: #ffffff;
+}
+
+.pagination > .active >a {
+	background: #665e52;
+}
+
+.pagination > li > a:hover {
+	background: #665e52;
+	color: #ffffff;
+}
+
+h3 {
+	color: #998d7a;
+}
+
+// ヘッダー
+header {
+	background: #998d7a;
+	border-radius: 0;
+	height: 75px;
+	width: 100%;
+	border-bottom: 5px white solid;
+}
+
+.logo {
+	width: 180px;
+	margin-left: 15px;
+	margin-top: 3px;
+	display: inline-block;
+}
+
+.nav-style {
+	width: 620px;
+	float: right;
+}
+
+.dropmenu {
+	background-color: #998d7a;
+	padding: 0;
+	margin: 0;
+}
+
+.dropmenu li {
+	width: 150px;
+	display: inline-block;
+	list-style: none;
+	position: relative;
+}
+
+.dropmenu a {
+	background-color: #998d7a;
+	color: white;
+	line-height: 40px;
+	text-align: center;
+	font-weight: bold;
+	text-decoration: none;
+	display: block;
+	height: 70px;
+	line-height: 70px;
+}
+
+.dropmenu a:hover {
+	background-color: #665e52;
+}
+
+.dropmenu ul {
+	display: none;
+	margin: 0px;
+    padding: 0px;
+    position: absolute;
+}
+
+.dropmenu ul li {
+	border-top: 1px solid pink;
+}
+
+.dropmenu li:hover ul {
+	display: block;
+}
+
+// Recipe new
 .title {
 	margin-top: 20px;
 	margin-bottom: 50px;
 }
 
-
-.amount {
-	margin-left: 100px;
-	margin-top: 55px;
+.top {
+	margin-bottom: 30px;
 }
 
-.mterial {
-	margin-left: 100px;
-	margin-top: 10px;
+.recipe-image {
+	float: left;
 }
 
-.puantity {
-	margin-top: 10px;
+.image_add {
+	width: 300px;
+}
+
+.recipe_page {
+	margin-bottom: 100px;
+}
+
+#mterial {
+	width: 400px;
+	display: inline-block;
+	margin-left: 60px;
+	padding-bottom: 5px;
 }
 
 .add-mterial {
-	margin-left: 100px;
+	margin-left: 300px;
+}
+
+.amount {
+	margin-left: 220px;
+	margin-bottom: 20px;
+}
+
+.cook-add {
+	display: inline-block;
+	float: left;
+	margin-bottom: 50px;
+	margin-right: 32px;
+}
+
+// Recipe show
+.top-show {
+	margin-bottom: 50px;
+}
+
+.title-show {
+	text-align: center;
+}
+
+.image-show {
+	display: inline-block;
+	float: left;
+	margin-left: 50px;
+}
+
+.mterial-show {
+	display: inline-block;
+	float: left;
+	margin-left: 250px;
+}
+
+.mterial-name {
+	width: 200px;
+}
+
+.show-table {
+	width: 400px;
+}
+
+.cook-show {
+	display: inline-block;
+	float: left;
+	margin-bottom: 100px;
+	margin-right: 90px;
+	width: 300px;
+}
+
+.cook-body {
 	margin-top: 10px;
 }
 
-.cooking {
+.is_valid-show {
+	display: inline-block;
+	width: 20%;
+}
+
+.genre-show {
+	width: 40%;
+	display: inline-block;
+}
+
+.number {
+	font-weight: 600;
+}
+
+.information {
+	margin: 20px 0;
+}
+
+.form_control {
+	display:inline-block;
+	float:left;
+}
+
+.comment_add {
+	width: 600px;
+	height:45px;
+	position: relative
+}
+
+.comment_btn {
+	position: absolute;
+	bottom: 0;
+	display:inline-block;
+}
+
+.btn_create {
+	background-color: #998d7a;
+	color: #ffffff;
+	height: 25px;
+	line-height: 13px;
+	margin-left :50px;
+}
+
+// Recipe index
+.recipe-index {
+	background-color: #fffffa;
+	border: solid 2px;
+	border-color: rgb(246, 136, 106);
+	border-radius: 5px;
+}
+
+.link_recipe {
+	background-color: #998d7a;
+	color: white;
+	width: 150px;
+	border: 2px white solid;
+}
+
+.recipe-box {
+	width: 100%;
+	height: 200px;
+	border-top: solid 2px;
+	border-color: rgb(246, 136, 106);
+}
+
+.recipe-box:first-child {
+	border-top: none;
+}
+
+.book-area {
 	width: 30%;
 	display: inline-block;
-	margin-left: 15px;
+	float: left;
+}
+
+.book {
+	width: 124px;
 	margin-top: 20px;
+	margin-left: 30px;
+	border: solid 2px #a9a9a9;
+}
+
+.book_index {
+	display:inline-block;
+}
+
+.book-recently {
+	width: 124px;
+	margin-left: 30px;
+	border: solid 2px #a9a9a9;
+	display: inline-block;
+	float: left;
+}
+
+.recipe-label {
+	height: 45px;
+	border-top: solid 1px #a9a9a9;
+	line-height: 45px;
+	text-align: center;
+	background:linear-gradient(135deg, #ffe9a8 0%,#ff884c 100%);
+	margin: 0;
+	color: black;
+	overflow: hidden;
+}
+
+.recipe_like {
+	display: inline-block;
+	font-size: 25px;
+}
+
+.recipe-text {
+	width: 50%;
+	display: inline-block;
+	float: left;
+}
+
+.recipe-name-index {
+	margin: 0 auto;
+	margin-top: 20px;
+	text-align: center;
+}
+
+.recipe_user {
+	float: right;
+}
+
+.recipe-link {
+	display: inline-block;
+	float: right;
+	line-height: 200px;
+	margin-right: 10px;
+}
+
+.scroll {
+  overflow: auto;
+  white-space: nowrap;
+}
+
+// home shelf
+
+.select_box, .select_box_like {
+	display: inline-block;
+	position: relative;
+}
+
+.select_box select {
+	background-color: rgb(116, 184, 183);
+	border: none;
+	color: #ffffff;
+	width: 200px;
+	height: 30px;
+	margin-left: 120px;
+	display: inline-block;
+}
+
+.select_box_like select {
+	background-color: rgb(246, 136, 106);
+	border: none;
+	color: #ffffff;
+	width: 200px;
+	height: 30px;
+	margin-left: 120px;
+	display: inline-block;
+}
+
+.my_page {
+	display: inline-block;
+	width: 300px;
+	height: 37px;
+}
+
+.my_page > .pagination {
+	margin: 0;
+	position: absolute;
+	bottom: 0;
+	text-align: center;
+}
+
+
+.home-rank {
+	background-color: #fffffa;
+	border-top: 6px double;
+	border-bottom: 6px double;
+	border-color: rgb(247, 196, 49);
+	height: 300px;
+}
+
+.home-genre {
+	background-color: #fffffa;
+	border-top: 6px solid;
+	border-bottom: 6px solid;
+	border-color: rgb(116, 184, 183);
+	margin: 0 auto 100px;
+}
+
+.genre_link {
+	color: black;
+	font-size: 20px;
+	display: inline-block;
+	line-height: 50px;
+	padding: 10px 20px;
+}
+
+.my-shelf {
+	margin: 0 auto;
+	background-image: image-url(shelf1.png);
+	background-size: cover;
+	width: 950px;
+	height: 810px;
+}
+
+.shelf-book {
+	width: 124px;
+	margin-top: 30px;
+	margin-left: 90px;
+	margin-right: 0px;
+	margin-bottom: 15px;
+	border: solid 2px #a9a9a9;
+	float: left;
+	box-shadow: 0 8px 20px 0 rgba(0, 0, 0, .5);
+}
+
+.home-box {
+	display: inline-block;
+	float:left;
+	width: 250px;
+	height: 288px;
+}
+
+.home-box:first-child {
+	margin-left: 50px;
+}
+
+.home-like {
+	display: inline-block;
+	font-size: 20px;
+}
+
+.home-link {
+	float: right;
+	margin-right: 10px;
+	color: #998d7a;
+}
+
+.home-explanation {
+	width: 210px;
+	margin: 0 20px;
+	overflow: hidden;
+	display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+}
+
+.book-home {
+	display: inline-block;
+	margin-left: 65px;
+	width: 124px;
+	border: solid 2px #a9a9a9;
+}
+
+.user_name_home {
+	text-align: center;
+	height: 20px;
+	margin-bottom: 10px;
+	overflow: scroll;
+	font-weight: 600;
+}
+
+.rank {
+	margin-left: 20px;
+	font-size: 20px;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+// home top&about
+.top_image {
+	background-image: image-url(2034703.jpg);
+	background-size: cover;
+	background-attachment: fixed;
+	position:relative;
+}
+
+.box {
+	height: 50px;
+}
+
+.about_box {
+	width: 100%;
+	height: 500px;
+}
+
+.top_title {
+	width: 70%;
+	height: 400px;
+	background-color: #ffffff;
+	opacity: 0.9;
+	border-radius: 50px;
+	margin: 0 auto;
+	margin-top: 50px;
+	text-align: center;
+}
+
+.staut_button {
+	width: 408px;
+	margin: 0 auto;
+	padding-bottom: 100px;
+}
+
+.staut {
+	background-color: #998d7a;
+	color: white;
+	width: 200px;
+	border: 2px white solid;
+}
+
+.about {
+	line-height: 90px;
+}
+
+.about_text {
+	line-height: 40px;
+	font-size: 20px;
+}
+
+// devise registrations
+.sign_up {
+	width: 60%;
+	margin: 0 auto;
+	border: 5px solid;
+	border-color: rgb(246, 136, 106);
+	background-color: #fffffa;
+	border-radius: 20px;
+}
+
+.sign_in {
+	width: 60%;
+	margin: 0 auto;
+	border: 5px solid;
+	border-color: rgb(116, 184, 183);
+	background-color: #fffffa;
+	border-radius: 20px;
+}
+
+.devise_label {
+	width: 150px;
+}
+
+em {
+	font-size: 10px;
+	padding-left: 160px;
+}
+
+.devise_field {
+	width: 330px;
+	margin: 15px auto;
+}
+
+.first {
+	margin-top: 50px;
+}
+
+.bottom {
+	margin-bottom: 50px;
+	margin-top: 30px;
+}
+
+.actions {
+	text-align: center;
+}
+
+// User
+
+.user_image {
+	display: inline-block;
+}
+
+.user_info {
+	display: inline-block;
+	margin-left: 200px;
+}
+
+.user_label {
+	width: 150px;
+	color: #998d7a;
+}
+
+.user_shelf_link {
+	margin-top: 148px;
+}
+
+.new_books {
+	margin-left: 60px;
 }
