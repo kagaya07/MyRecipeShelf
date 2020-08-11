@@ -436,7 +436,7 @@ header {
 
 .my-shelf {
 	margin: 0 auto;
-	background-image: image-url(shelf1.png);
+	background-image: image-url("shelf1.png");
 	background-size: cover;
 	width: 950px;
 	height: 810px;
@@ -508,7 +508,7 @@ header {
 
 // home top&about
 .top_image {
-	background-image: image-url(2034703.jpg);
+	background-image: image-url("2034703.jpg");
 	background-size: cover;
 	background-attachment: fixed;
 	position:relative;
