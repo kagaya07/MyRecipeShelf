@@ -1,31 +1,33 @@
-<h3>Genre Index</h3>
+<div class="container-fluid body">
+	<h3>Genre Index</h3>
 
-<%= form_for @genre do |f| %>
-	<%= f.label :Genre_Name %>
-	<%= f.text_field :name, placeholder: "(例)お菓子" %>
+	<%= form_for @genre do |f| %>
+		<%= f.label :Genre_Name %>
+		<%= f.text_field :name, placeholder: "(例)お菓子" %>
 
-	<label><%= f.radio_button :is_vaild, true %>有効</label>
-	<label><%= f.radio_button :is_vaild, false %>無効</label>
-	<%= f.submit '保存' %>
-<% end %>
-
-
-<table class="table">
-	<thead><tr><th>ジャンル</th><th>状態</th><th></th></tr></thead>
-	<% @genres.each do |genre| %>
-	<tbody>
-		<tr>
-			<td><%= genre.name %></td>
-          	<td><% if genre.is_vaild== true %>
-          				<p>有効</p>
-          			<% else %>
-          				<p>無効</p>
-          			<% end %>
-          	</td>
-			<td><%= link_to "編集する", genres_path(id: genre.id) %></td>
-		</tr>
-	</tbody>
+		<label><%= f.radio_button :is_vaild, true %>有効</label>
+		<label><%= f.radio_button :is_vaild, false %>無効</label>
+		<%= f.submit '保存' %>
 	<% end %>
-</table>
+
+
+	<table class="table">
+		<thead><tr><th>ジャンル</th><th>状態</th><th></th></tr></thead>
+		<% @genres.each do |genre| %>
+		<tbody>
+			<tr>
+				<td><%= genre.name %></td>
+	      <td><% if genre.is_vaild== true %>
+      				<p>有効</p>
+      			<% else %>
+      				<p>無効</p>
+      			<% end %>
+      	</td>
+				<td><%= link_to "編集する", genres_path(id: genre.id) %></td>
+			</tr>
+		</tbody>
+		<% end %>
+	</table>
+</div>
 
 

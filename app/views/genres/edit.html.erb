@@ -1,10 +1,11 @@
-<h3>Genre Show</h3>
+<div class="container-fluid body">
+	<h3>Genre Show</h3>
 
-<%= form_for@genre do |f| %>
-	<%= f.label :Genre_Name %>
-	<%= f.text_field :name %>
-
-	<label><%= f.radio_button :is_vaild, "true" %> 有効</label>
-	<label><%= f.radio_button :is_vaild, "false" %> 無効</label>
-	<%= f.submit '変更保存' %>
-<% end %>
+	<%= form_for@genre do |f| %>
+		<%= f.label :Genre_Name %>
+		<%= f.text_field :name %>
+		<label><%= f.radio_button :is_vaild, "true" %> 有効</label>
+		<label><%= f.radio_button :is_vaild, "false" %> 無効</label>
+		<%= f.submit '変更保存' %>
+	<% end %>
+</div>

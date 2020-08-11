@@ -1,51 +1,47 @@
 <div class="container-fluid body">
-<h1 class="heading">User Show</h1>
-
-<%= attachment_image_tag @user, :image, size: "200x200", format: 'jpeg', fallback: 'no_image.jpg', style: "border-radius: 50%" , class:"user_image"%>
-<div class="user_info">
-	<label class="user_label">ニックネーム</label>
-	<%= @user.name %><br>
-	<label class="user_label">得意料理</label>
-	<%= @user.specialties %>
-	<% if @user.id == current_user.id %>
-		<%= link_to "プロフィール編集", edit_user_path(@user) , class:"btn btn_create"%>
-	<% end %>
-</div>
-
-<% if current_user.role == "admin" %>
-
-	<h4>管理者リンク</h4>
-	<table>
-		<tr>
-			<td><label>会員一覧へ</label><br><p>登録している会員を一覧で確認できます。</p></td>
-			<td><%= link_to "リンク", users_path %></td>
-		</tr>
-		<tr>
-			<td><label>ジャンル追加＆一覧へ</label><br><p>ジャンルを追加、確認ができます。</p></td>
-			<td><%= link_to "リンク", genres_path %></td>
-		</tr>
-		<tr>
-			<td><label>レシピ一覧へ</label><br><p>レシピの一覧へ行きます。</p></td>
-			<td><%= link_to "リンク", recipes_path %></td>
-		</tr>
-	</table>
-
-<% else %>
-
-	<h3 class="heading_second">最近のレシピ</h3>
-	<div class="new_books">
-	<% @recipes.each do |recipe| %>
-	<%= link_to recipe_path(recipe) do %>
-		<div class="book-recently">
-		<%= attachment_image_tag recipe, :image,size:"120x105", format:'jpeg', fallback: "no_image.jpg", class: "image-index"%><br>
-		<p class="recipe-label"><%= recipe.name %></p>
-		</div>
-	<% end %>
-	<% end %>
+	<h1 class="heading">User Show</h1>
+	<%= attachment_image_tag @user, :image, size: "200x200", format: 'jpeg', fallback: 'no_image.jpg', style: "border-radius: 50%" , class:"user_image"%>
+	<div class="user_info">
+		<label class="user_label">ニックネーム</label>
+		<%= @user.name %><br>
+		<label class="user_label">得意料理</label>
+		<%= @user.specialties %>
+		<% if @user.id == current_user.id %>
+			<%= link_to "プロフィール編集", edit_user_path(@user) , class:"btn btn_create"%>
+		<% end %>
 	</div>
-	<% if @user.id == current_user.id %>
-		<div class="user_shelf_link"><%= link_to "レシピ棚へ", homes_shelf_path ,style: "color: #998d7a; margin-left: 10px;"%></div>
-	<% end %>
 
-<% end %>
+	<% if current_user.role == "admin" %>
+		<h4>管理者リンク</h4>
+		<table>
+			<tr>
+				<td><label>会員一覧へ</label><br><p>登録している会員を一覧で確認できます。</p></td>
+				<td><%= link_to "リンク", users_path %></td>
+			</tr>
+			<tr>
+				<td><label>ジャンル追加＆一覧へ</label><br><p>ジャンルを追加、確認ができます。</p></td>
+				<td><%= link_to "リンク", genres_path %></td>
+			</tr>
+			<tr>
+				<td><label>レシピ一覧へ</label><br><p>レシピの一覧へ行きます。</p></td>
+				<td><%= link_to "リンク", recipes_path %></td>
+			</tr>
+		</table>
+	<% else %>
+
+		<h3 class="heading_second">最近のレシピ</h3>
+		<div class="new_books">
+			<% @recipes.each do |recipe| %>
+				<%= link_to recipe_path(recipe) do %>
+					<div class="book-recently">
+						<%= attachment_image_tag recipe, :image,size:"120x105", format:'jpeg', fallback: "no_image.jpg", class: "image-index"%><br>
+						<p class="recipe-label"><%= recipe.name %></p>
+					</div>
+				<% end %>
+			<% end %>
+		</div>
+		<% if @user.id == current_user.id %>
+			<div class="user_shelf_link"><%= link_to "レシピ棚へ", homes_shelf_path ,style: "color: #998d7a; margin-left: 10px;"%></div>
+		<% end %>
+	<% end %>
 </div>

@@ -11,7 +11,7 @@
 
 		<div class="top clearfix">
 			<%= f.attachment_field :image, class: "image_add" %>
-			<%= attachment_image_tag @recipe, :image,size:"250x230", format:'jpeg', fallback: "no_image.jpg", :class => "recipe-image"%>
+			<%= attachment_image_tag @recipe, :image,size:"250x230", format:'jpeg', fallback: "no_image.jpg", :class => "recipe-image preview"%>
 
 			<%= f.number_field :amount, class: "amount"%>人前<br>
 			<div id="mterial">
@@ -40,6 +40,23 @@
 		<%= f.text_area :explanation, placeholder: "レシピの簡単な説明など(100文字まで)", :size => "100" %>
 		<label><%= f.radio_button :is_valid, true %> 公開</label>
 		<label><%= f.radio_button :is_valid, false %> 非公開</label>
-		<%= f.submit '編集保存', class: "btn"%>
+		<%= f.submit '編集保存', class: "btn btn_create"%>
 	<% end %>
 </div>
+
+<script type="text/javascript">
+$(function() {
+ function readURL(input) {
+   if (input.files && input.files[0]) {
+     var reader = new FileReader();
+     reader.onload = function (e) {
+       $('.preview').attr('src', e.target.result);
+     }
+     reader.readAsDataURL(input.files[0]);
+   }
+ }
+ $(".image_add").change(function(){
+   readURL(this);
+ });
+});
+</script>

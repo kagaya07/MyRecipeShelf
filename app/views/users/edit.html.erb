@@ -1,18 +1,17 @@
 <div class="container-fluid body">
-<h1 class="heading">Users Edit</h1>
+	<h1 class="heading">Users Edit</h1>
 
-<%= form_for(@user) do |f| %>
-	<div class="user_image">
-	 <%= attachment_image_tag @user, :image, size: "200x200", format: 'jpeg', fallback: 'no_image.jpg', style: "border-radius: 50%" %>
-	 <%= f.attachment_field :image %>
-	</div>
-	<div class="user_info">
-	 <label class="user_label">ニックネーム</label>
-	 <%= f.text_field :name %><br>
-	 <label class="user_label">得意料理</label>
-	 <%= f.text_field :specialties %>
-
-	 <%= f.submit "編集を保存" , class:"btn btn_create"%>
-	</div>
-<% end %>
+	<%= form_for(@user) do |f| %>
+		<div class="user_image">
+			<%= attachment_image_tag @user, :image, size: "200x200", format: 'jpeg', fallback: 'no_image.jpg', style: "border-radius: 50%" %>
+			<%= f.attachment_field :image %>
+		</div>
+		<div class="user_info">
+			<label class="user_label">ニックネーム</label>
+			<%= f.text_field :name %><br>
+			<label class="user_label">得意料理</label>
+			<%= f.text_field :specialties %>
+			<%= f.submit "編集を保存" , class:"btn btn_create"%>
+		</div>
+	<% end %>
 </div>

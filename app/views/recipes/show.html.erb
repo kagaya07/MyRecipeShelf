@@ -1,85 +1,82 @@
 <div class="container-fluid body recipe_page">
-<h1 class="heading">Recipes Show</h1>
-<% if flash[:notice] %>
-	<div class="flash notice"><%= flash[:notice] %></div>
-<% end %>
+	<h1 class="heading">Recipes Show</h1>
+	<% if flash[:notice] %>
+		<div class="flash notice"><%= flash[:notice] %></div>
+	<% end %>
 
-<h2 class="title-show"><%= @recipe.name %></h2>
-<p class="recipe_user"><%= link_to user_path(@recipe.user_id) do %><%= @recipe.user.name %><% end %></p>
-<% recipe = @recipe %>
-<div id="like-<%= @recipe.id %>">
-<%= render partial: 'favorites/favorite' , locals:{ recipe: @recipe } %><br>
-</div>
-<div class="clearfix top-show">
-	<%= attachment_image_tag @recipe, :image,size:"300x230", format:'jpeg', fallback: "no_image.jpg", class: "image-show"%>
+	<h2 class="title-show"><%= @recipe.name %></h2>
+	<p class="recipe_user"><%= link_to user_path(@recipe.user_id) do %><%= @recipe.user.name %><% end %></p>
+	<% recipe = @recipe %>
+	<div id="like-<%= @recipe.id %>">
+		<%= render partial: 'favorites/favorite' , locals:{ recipe: @recipe } %><br>
+	</div>
+	<div class="clearfix top-show">
+		<%= attachment_image_tag @recipe, :image,size:"300x230", format:'jpeg', fallback: "no_image.jpg", class: "image-show"%>
 
-	<div class="mterial-show">
-	<label>材料</label>
-	<%= @recipe.amount %>人前
-	<table class="table show-table">
-		<thead><tr><th>材料名</th><th>分量</th></tr></thead>
-		<% @mterials.each do |mterial| %>
-		<tbody>
-			<tr>
-			<td class="mterial-name"><%= mterial.name %></td>
-			<td class="mterial-puantity"><%= mterial.puantity %></td>
-			</tr>
-		</tbody>
+		<div class="mterial-show">
+			<label>材料</label>
+			<%= @recipe.amount %>人前
+			<table class="table show-table">
+				<thead><tr><th>材料名</th><th>分量</th></tr></thead>
+				<% @mterials.each do |mterial| %>
+				<tbody>
+					<tr>
+					<td class="mterial-name"><%= mterial.name %></td>
+					<td class="mterial-puantity"><%= mterial.puantity %></td>
+					</tr>
+				</tbody>
+				<% end %>
+			</table>
+		</div>
+	</div>
+
+	<div class="clearfix">
+		<h3>作り方</h3>
+		<% n = 1 %>
+		<% @cooks.each do |cook| %>
+			<div class="cook-show">
+				<p class="number"><%= n %>.</p>
+				<%= attachment_image_tag cook, :image,size:"200x200", format:'jpeg'%><br>
+				<p class="cook-body"><%= cook.body %></p>
+			</div>
+			<% n += 1 %>
 		<% end %>
-	</table>
 	</div>
-</div>
 
-<div class="clearfix">
-<h3>作り方</h3>
-<% n = 1 %>
-<% @cooks.each do |cook| %>
-	<div class="cook-show">
-	<p class="number"><%= n %>.</p>
-	<%= attachment_image_tag cook, :image,size:"200x200", format:'jpeg'%><br>
-	<p class="cook-body"><%= cook.body %></p>
+	<h3>レシピの説明</h3>
+	<div class="explanation-show"><%= @recipe.explanation %></div>
+
+	<h3>ジャンル</h3>
+	<div class="information">
+		<p class="genre-show"><%= @recipe.genre.name %></p>
+		<% if @recipe.is_valid== true %>
+			<p class="is_valid-show">公開中</p>
+		<% else %>
+			<p class="is_valid-show">非公開</p>
+		<% end %>
+		<% if @recipe.user == current_user %>
+			<%= link_to "レシピを編集する", edit_recipe_path(@recipe), class: "btn btn-success active" %>
+			<%= link_to "レシピを削除する", recipe_path(@recipe.id), method: :delete, data: {confirm: "本当に削除しますか？"},class: "btn btn-danger active" %>
+		<% elsif current_user.role == "admin" %>
+			<%= link_to "レシピを削除する", recipe_path(@recipe.id), method: :delete, data: {confirm: "本当に削除しますか？"},class: "btn btn-danger active" %>
+		<% end %>
 	</div>
-	<% n += 1 %>
-<% end %>
-</div>
 
-<h3>レシピの説明</h3>
-<div class="explanation-show">
-	<%= @recipe.explanation %>
-</div>
-
-<h3>ジャンル</h3>
-<div class="information">
-<p class="genre-show"><%= @recipe.genre.name %></p>
-<% if @recipe.is_valid== true %>
-	<p class="is_valid-show">公開中</p>
-<% else %>
-	<p class="is_valid-show">非公開</p>
-<% end %>
-<% if @recipe.user == current_user %>
-	<%= link_to "レシピを編集する", edit_recipe_path(@recipe), class: "btn btn-success active" %>
-	<%= link_to "レシピを削除する", recipe_path(@recipe.id), method: :delete, data: {confirm: "本当に削除しますか？"},class: "btn btn-danger active" %>
-<% elsif current_user.role == "admin" %>
-	<%= link_to "レシピを削除する", recipe_path(@recipe.id), method: :delete, data: {confirm: "本当に削除しますか？"},class: "btn btn-danger active" %>
-<% end %>
-</div>
-
-<div class="comment-box">
-	<%= form_for [@recipe, @comment] do |c| %>
-		<h3>コメント</h3><br>
-		<div class="comment_add"><%= c.text_area :body, class: "form_control", :size => "50" %>
-		<%= c.submit "コメントを送る", class: "btn staut comment_btn"%></div>
-	<% end %>
-	<table class="table comment_table">
-	<% @recipe.comments.each do |comment| %>
-		<tr>
-		<td><%= attachment_image_tag comment.user, :image, size:"40x40", format: 'jpeg', fallback: "no_image.jpg", style: "border-radius: 50%" %><br><%= comment.user.name %></td>
-		<td><%= comment.body %></td>
-		<td><% if comment.user == current_user || current_user.role == "admin" %>
-			<%= link_to "Destroy", recipe_comment_path(comment.recipe, comment), method: :delete,class: "btn btn-danger pull-right red" %>
-		<% end %></td>
-		</tr>
-	<% end %>
-	</table>
-</div>
+	<div class="comment-box">
+		<%= form_for [@recipe, @comment] do |c| %>
+			<h3>コメント</h3><br>
+			<div class="comment_add"><%= c.text_area :body, class: "form_control", :size => "50" %><%= c.submit "コメントを送る", class: "btn staut comment_btn"%></div>
+		<% end %>
+		<table class="table comment_table">
+		<% @recipe.comments.each do |comment| %>
+			<tr>
+				<td><%= attachment_image_tag comment.user, :image, size:"40x40", format: 'jpeg', fallback: "no_image.jpg", style: "border-radius: 50%" %><br><%= comment.user.name %></td>
+				<td><%= comment.body %></td>
+				<td><% if comment.user == current_user || current_user.role == "admin" %>
+					<%= link_to "Destroy", recipe_comment_path(comment.recipe, comment), method: :delete,class: "btn btn-danger pull-right red" %>
+				<% end %></td>
+			</tr>
+		<% end %>
+		</table>
+	</div>
 </div>

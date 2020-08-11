@@ -1,10 +1,27 @@
 <div class="nested-fields cook-add">
 	<% if f.object.image_id %>
-		<%= attachment_image_tag f.object, :image,size:"160x150", format:'jpeg', fallback: "no_image.jpg" %>
+		<%= attachment_image_tag f.object, :image,size:"160x150", format:'jpeg', fallback: "no_image.jpg", :class => "cook_preview" %>
 	<% else %>
-		<%= image_tag 'no_image.jpg', size:"160x150" %>
+		<%= image_tag 'no_image.jpg', size:"160x150", :class => "cook_preview" %>
 	<% end %>
-	<%= f.attachment_field :image %>
+	<%= f.attachment_field :image, class: "cook_image_add" %>
 	<%= f.text_area :body, placeholder: "作り方を記入" %><br>
 	<%= link_to_remove_association '削除', f %>
 </div>
+
+<script type="text/javascript">
+$(function() {
+ function readURL(input) {
+   if (input.files && input.files[0]) {
+     var reader = new FileReader();
+     reader.onload = function (e) {
+       $('.cook_preview').attr('src', e.target.result);
+     }
+     reader.readAsDataURL(input.files[0]);
+   }
+ }
+ $(".cook_image_add").change(function(){
+   readURL(this);
+ });
+});
+</script>
