@@ -3,6 +3,7 @@
 	<% if flash[:notice] %>
 		<div class="flash notice"><%= flash[:notice] %></div>
 	<% end %>
+	<h2>お試しわかめ</h2>
 
 	<h2 class="title-show"><%= @recipe.name %></h2>
 	<p class="recipe_user"><%= link_to user_path(@recipe.user_id) do %><%= @recipe.user.name %><% end %></p>
