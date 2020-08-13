@@ -5,19 +5,3 @@
 	<%= link_to_remove_association '削除', f %>
 </div>
 
-<script type="text/javascript">
-$(function() {
- function readURL(input) {
-   if (input.files && input.files[0]) {
-     var reader = new FileReader();
-     reader.onload = function (e) {
-       $('.cook_preview').attr('src', e.target.result);
-     }
-     reader.readAsDataURL(input.files[0]);
-   }
- }
- $(".cook_image_add").change(function(){
-   readURL(this);
- });
-});
-</script>
