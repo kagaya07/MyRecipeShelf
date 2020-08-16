@@ -13,9 +13,13 @@ class RecipesController < ApplicationController
 
   def show
     @recipe = Recipe.find(params[:id])
-    @cooks = @recipe.cooks
-    @mterials = @recipe.mterials
-    @comment = Comment.new
+    if @recipe.is_valid == false && @recipe.user_id != current_user.id
+      redirect_to homes_home_path, notice: "非公開のため観覧できません"
+    else
+      @cooks = @recipe.cooks
+      @mterials = @recipe.mterials
+      @comment = Comment.new
+    end
   end
 
   def edit
