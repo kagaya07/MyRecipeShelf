@@ -10,7 +10,7 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <header>
-  <img src="/assets/shelf.png" alt="" class="logo">
+  <%= image_tag asset_path("shelf.png", alt: "画像1") ,class:"logo" %>
   <nav class="nav-style">
       <ul class="dropmenu">
         <% if user_signed_in? %>

@@ -26,8 +26,6 @@ class HomesController < ApplicationController
 
  def like_shelf
  	if params[:option] == "1"
- 		@favorites = current_user.favorites.order(:genre_id).page(params[:page]).per(16)
- 	elsif params[:option] == "2"
  		@favorites = current_user.favorites.page(params[:page]).per(16)
  	else
  		@favorites = current_user.favorites.order(created_at: :desc).page(params[:page]).per(16)
