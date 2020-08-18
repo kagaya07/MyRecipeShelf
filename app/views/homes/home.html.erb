@@ -37,9 +37,6 @@
 				<p class="recipe-label"><%= topic.name %></p>
 				<% end %>
 			</div>
-			<div id="like-<%= topic.id %>" class="home-like">
-				<%= render partial: 'favorites/favorite' , locals:{ recipe: topic }%>
-			</div>
 			<div class="user_name_home"><%= topic.name %></div>
 			<p class="home-explanation"><%= topic.explanation %></p>
 			<% i += 1 %>

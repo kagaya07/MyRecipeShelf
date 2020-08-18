@@ -16,7 +16,7 @@ class RecipesController < ApplicationController
     if @recipe.is_valid == false && @recipe.user_id != current_user.id
       redirect_to homes_home_path, notice: "非公開のため観覧できません"
     else
-      @cooks = @recipe.cooks.order(id: :desc)
+      @cooks = @recipe.cooks
       @mterials = @recipe.mterials
       @comment = Comment.new
     end
