@@ -77,6 +77,18 @@ h3 {
 	color: #998d7a;
 }
 
+.back-link {
+	float: right;
+	background-color: #998d7a;
+	color: #fff;
+	padding-top: 0;
+	padding-bottom: 0;
+}
+
+.btn:hover {
+	color: #d3d3d3;
+}
+
 // ヘッダー
 header {
 	background: #998d7a;
@@ -195,7 +207,7 @@ header {
 .title-show {
 	text-align: center;
 	margin-bottom: 100px;
-	color: #8c4b1c;
+	color: #998d7a;
 	font-size: 40px;
 }
 
@@ -272,6 +284,13 @@ header {
 	height: 25px;
 	line-height: 13px;
 	margin-left :50px;
+}
+
+.return {
+	float: right;
+	background-color: #998d7a;
+	color: #fff;
+	border-radius: 50%;
 }
 
 // Recipe index
@@ -624,4 +643,22 @@ em {
 
 .new_books {
 	margin-left: 60px;
+}
+
+.admin-text {
+	margin-left: 20px;
+}
+
+.admin-table {
+	margin-top: 20px;
+	margin-left: 110px;
+	margin-bottom: 30px;
+}
+
+.admin-h3 {
+	margin-left: 110px;
+}
+
+.profile {
+	margin-left: 100px;
 }

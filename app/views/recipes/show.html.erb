@@ -6,7 +6,7 @@
 	<% end %>
 
 	<h2 class="title-show"><%= @recipe.name %></h2>
-	<p class="recipe_user"><%= link_to user_path(@recipe.user_id) do %><%= @recipe.user.name %><% end %></p>
+	<p class="recipe_user"><%= link_to user_path(@recipe.user_id), style: "color: #998d7a;" do %><%= @recipe.user.name %><% end %></p>
 	<% recipe = @recipe %>
 	<div id="like-<%= @recipe.id %>">
 		<%= render partial: 'favorites/favorite' , locals:{ recipe: @recipe } %><br>
@@ -80,4 +80,5 @@
 		<% end %>
 		</table>
 	</div>
+	<%= link_to "戻る" , :back, class: "btn return" %>
 </div>
