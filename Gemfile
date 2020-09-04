@@ -80,6 +80,7 @@ gem 'kaminari-bootstrap', '~> 3.0.1'
 gem 'cancancan'
 gem 'ransack'
 gem 'cocoon'
+gem 'haml-rails'
 
 gem 'dotenv-rails'
 group :production do
