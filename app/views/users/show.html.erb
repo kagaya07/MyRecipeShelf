@@ -16,7 +16,7 @@
 
 
 	<h3 class="heading_second">最近のレシピ</h3>
-	<div class="new_books">
+	<div class="new_books clearfix">
 		<% @recipes.each do |recipe| %>
 			<%= link_to recipe_path(recipe) do %>
 				<div class="book-recently">
@@ -25,10 +25,10 @@
 				</div>
 			<% end %>
 		<% end %>
-	</div>
-	<% if @user.id == current_user.id %>
+		<% if @user.id == current_user.id %>
 		<div class="user_shelf_link"><%= link_to "レシピ棚へ", homes_shelf_path ,style: "color: #998d7a; margin-left: 10px;"%></div>
 	<% end %>
+	</div>
 
 	<% if current_user.role == "admin" %>
 		<h3 class="admin-h3">管理者用リンク</h3>
